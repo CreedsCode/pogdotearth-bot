@@ -11,11 +11,12 @@ def do(images):
   with mp_hands.Hands(
       static_image_mode=True,
       max_num_hands=8,
-      min_tracking_confidence=0.2,
-      min_detection_confidence=0.3) as hands:
+      min_tracking_confidence=0.15,
+      min_detection_confidence=0.1) as hands:
     for idx, file in enumerate(images):
       # Read an image, flip it around y-axis for correct handedness output (see
       # above).
+      filename = os.path.basename(file)
       image = cv2.flip(cv2.imread(file), 1)
       # Convert the BGR image to RGB before processing.
       results = hands.process(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
@@ -23,6 +24,7 @@ def do(images):
       # Print handedness and draw hand landmarks on the image.
       print('Handedness:', results.multi_handedness)
       if not results.multi_hand_landmarks:
+        cv2.imwrite('images/tests/final/0_' + filename, cv2.flip(image, 1))
         continue
       image_height, image_width, _ = image.shape
       annotated_image = image.copy()
@@ -40,11 +42,11 @@ def do(images):
             mp_drawing_styles.get_default_hand_landmarks_style(),
             mp_drawing_styles.get_default_hand_connections_style())
       
-      cv2.imwrite('images/tests/mediapipe/penis' + str(idx) + '.png', cv2.flip(annotated_image, 1))
+      cv2.imwrite('images/tests/final/1_' + filename, cv2.flip(annotated_image, 1))
 
 if __name__ == "__main__":
   
-  folder_directory = "images/everything"
+  folder_directory = r"images\tests\everything"
   images = os.listdir(folder_directory)
   do([f"{folder_directory}/{image}" for image in images])
   

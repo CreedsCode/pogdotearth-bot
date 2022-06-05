@@ -23,7 +23,7 @@ To specify we are looking for are range of colors.
 
 To be precise from Orange-red to Green.
 
-There are many ways to check if a color is present in a picture. => 
+There are many ways to check if a color is present in a  picture. => 
 
 to read through: 
 https://stackoverflow.com/questions/3241929/python-find-dominant-most-common-color-in-an-image#:~:text=Python%20Imaging%20Library%20has%20method%20getcolors%20on%20Image,that%20and%20see%20if%20it%20performs%20any%20better.

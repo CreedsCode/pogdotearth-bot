@@ -46,9 +46,10 @@ def do(images):
 
 if __name__ == "__main__":
   
-  folder_directory = r"images\tests\everything"
+  folder_directory = "images/tests/manuel"
   images = os.listdir(folder_directory)
-  do([f"{folder_directory}/{image}" for image in images])
+  # do([f"{folder_directory}/{image}" for image in images])
+  do(["images/tests/manuel/penis.png","images/tests/manuel/penis.png"])
   
   cv2.waitKey(50000)
   cv2.destroyAllWindows()
